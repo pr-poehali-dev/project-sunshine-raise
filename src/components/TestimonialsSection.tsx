@@ -60,9 +60,36 @@ const TestimonialsSection = () => {
           ))}
         </div>
 
+        {/* Photo + specs grid */}
+        <div className="grid md:grid-cols-2 gap-6 mb-6">
+          <div className="rounded-2xl overflow-hidden border border-border relative h-64 md:h-auto">
+            <img
+              src="https://cdn.poehali.dev/projects/68d82088-8b02-49c3-a021-a205ff7b1889/files/92cceac8-0b6b-41a5-9a46-9929f99a5fc7.jpg"
+              alt="Газогенераторные установки ЦОД Позитрон"
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute bottom-4 left-4 bg-black/50 backdrop-blur-sm text-white text-xs font-mono px-3 py-1.5 rounded-lg">
+              СОБСТВЕННАЯ ГЕНЕРАЦИЯ · ГПУ
+            </div>
+          </div>
+          <div className="grid grid-rows-2 gap-6">
+            {techSpecs.slice(0, 2).map((spec) => (
+              <div key={spec.title} className="bg-card border border-border rounded-2xl p-6 flex gap-5">
+                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
+                  <Icon name={spec.icon} className="text-primary" size={22} fallback="Cpu" />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-lg mb-2">{spec.title}</h3>
+                  <p className="text-sm text-muted-foreground">{spec.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
         {/* Tech specs */}
         <div className="grid md:grid-cols-2 gap-6">
-          {techSpecs.map((spec) => (
+          {techSpecs.slice(2).map((spec) => (
             <div key={spec.title} className="bg-card border border-border rounded-2xl p-6 flex gap-5">
               <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
                 <Icon name={spec.icon} className="text-primary" size={22} fallback="Cpu" />
