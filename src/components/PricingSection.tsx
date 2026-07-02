@@ -1,118 +1,106 @@
-import { Check } from "lucide-react";
+import Icon from "@/components/ui/icon";
 
-interface PricingTier {
-  name: string;
-  price: string;
-  description: string;
-  features: string[];
-  popular?: boolean;
+interface RoadmapPhase {
+  phase: string;
+  title: string;
+  power: string;
+  status: "done" | "active" | "planned";
+  items: string[];
 }
 
-const tiers: PricingTier[] = [
+const phases: RoadmapPhase[] = [
   {
-    name: "СТАРТ",
-    price: "1 490 ₽",
-    description: "Для тех, кому нужен второй взгляд.",
-    features: [
-      "500 ИИ-черновиков в месяц",
-      "Стандартная библиотека тонов",
-      "Интеграция с Gmail",
-      "Chrome-расширение",
-      "История контекста 7 дней",
+    phase: "ОЧЕРЕДЬ I",
+    title: "Подготовка площадки",
+    power: "2 МВт",
+    status: "active",
+    items: [
+      "Инженерная подготовка участка 4 Га",
+      "Монтаж энергетической инфраструктуры",
+      "Запуск первого модуля дата-центра",
     ],
   },
   {
-    name: "ПРО",
-    price: "3 990 ₽",
-    description: "Для профессионалов, которые ценят время.",
-    features: [
-      "Безлимитные ИИ-черновики",
-      "Обучение собственному тону",
-      "Все интеграции",
-      "Приоритетная поддержка",
-      "История контекста 30 дней",
+    phase: "ОЧЕРЕДЬ II",
+    title: "Масштабирование",
+    power: "до 12 МВт",
+    status: "planned",
+    items: [
+      "Ввод дополнительных модулей 2–4 МВт",
+      "Расширение генерации на ГПУ",
+      "Подключение первых клиентов и партнёров",
     ],
-    popular: true,
   },
   {
-    name: "КОМАНДА",
-    price: "7 990 ₽",
-    description: "Для команд, работающих на масштабе.",
-    features: [
-      "Всё из Про",
-      "Командная работа",
-      "Админ-панель",
-      "SSO и SAML",
-      "Персональный менеджер",
+    phase: "ОЧЕРЕДЬ III",
+    title: "Полная мощность",
+    power: "30 МВт",
+    status: "planned",
+    items: [
+      "Вывод кластера на 3600 стоек",
+      "Административные и офисные здания",
+      "Готовность к крупным AI-кластерам",
     ],
   },
 ];
+
+const statusLabel: Record<RoadmapPhase["status"], string> = {
+  done: "ЗАВЕРШЕНО",
+  active: "В РАБОТЕ",
+  planned: "ПЛАН",
+};
 
 const PricingSection = () => {
   return (
     <section id="pricing" className="py-24 bg-secondary/30">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
-          <span className="text-xs font-mono text-muted-foreground tracking-wider">ТАРИФЫ</span>
+          <span className="text-xs font-mono text-primary tracking-wider">ДОРОЖНАЯ КАРТА</span>
           <h2 className="font-serif text-4xl md:text-5xl mt-4 mb-4">
-            Пишите как профи,
+            План реализации
             <br />
-            платите разумно
+            и очереди ввода
           </h2>
-          <div className="flex flex-wrap items-center justify-center gap-4">
-            <div className="bg-[#fffef0] px-3 py-1 rounded shadow-sm rotate-[-2deg] border border-amber-100">
-              <span className="text-xs font-mono">БЕСПЛАТНЫЙ_ПРОБНЫЙ</span>
-            </div>
-            <p className="text-muted-foreground text-sm">Без скрытых платежей. 14 дней бесплатно</p>
-            <div className="bg-[#fffef0] px-3 py-1 rounded shadow-sm rotate-[2deg] border border-amber-100">
-              <span className="text-xs font-mono">ОДОБРЕНО</span>
-            </div>
-          </div>
+          <p className="text-muted-foreground text-sm max-w-md mx-auto">
+            Поэтапное масштабирование от первого модуля до кластера полной мощности 30 МВт.
+          </p>
         </div>
 
         <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-          {tiers.map((tier) => (
+          {phases.map((phase) => (
             <div
-              key={tier.name}
+              key={phase.phase}
               className={`bg-card border rounded-2xl p-6 relative flex flex-col ${
-                tier.popular ? "border-primary shadow-lg" : "border-border"
+                phase.status === "active" ? "border-primary shadow-lg" : "border-border"
               }`}
             >
-              {tier.popular && (
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground text-xs font-mono px-3 py-1 rounded-full">
-                  ПОПУЛЯРНЫЙ
+              {phase.status === "active" && (
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-accent text-accent-foreground text-xs font-mono px-3 py-1 rounded-full">
+                  ТЕКУЩИЙ ЭТАП
                 </div>
               )}
 
               <div className="mb-6">
-                <span className="text-xs font-mono text-muted-foreground">{tier.name}</span>
-                <div className="flex items-baseline gap-1 mt-2">
-                  <span className="text-4xl font-serif">{tier.price}</span>
-                  <span className="text-muted-foreground text-sm">/мес</span>
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-mono text-muted-foreground">{phase.phase}</span>
+                  <span className="text-[10px] font-mono text-primary">{statusLabel[phase.status]}</span>
                 </div>
-                <p className="text-sm text-muted-foreground mt-2">{tier.description}</p>
+                <div className="flex items-baseline gap-2 mt-2">
+                  <span className="text-3xl font-serif text-primary">{phase.power}</span>
+                </div>
+                <p className="text-sm font-medium mt-2">{phase.title}</p>
               </div>
 
               <div className="space-y-3 flex-1">
-                {tier.features.map((feature) => (
-                  <div key={feature} className="flex items-center gap-3">
-                    <div className="w-4 h-4 rounded-full bg-accent flex items-center justify-center">
-                      <Check className="w-2.5 h-2.5 text-accent-foreground" />
+                {phase.items.map((item) => (
+                  <div key={item} className="flex items-start gap-3">
+                    <div className="w-4 h-4 rounded-full bg-primary/10 flex items-center justify-center mt-0.5 flex-shrink-0">
+                      <Icon name="Check" className="text-primary" size={11} />
                     </div>
-                    <span className="text-sm">{feature}</span>
+                    <span className="text-sm text-muted-foreground">{item}</span>
                   </div>
                 ))}
               </div>
-
-              <button
-                className={`w-full py-3 rounded-full text-sm font-medium transition-colors mt-6 ${
-                  tier.popular
-                    ? "bg-primary text-primary-foreground hover:bg-primary/90"
-                    : "border border-border hover:bg-secondary"
-                }`}
-              >
-                НАЧАТЬ
-              </button>
             </div>
           ))}
         </div>

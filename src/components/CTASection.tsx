@@ -1,44 +1,64 @@
-import { ArrowRight, FileText, Mail, Send, Users, Zap } from "lucide-react";
+import Icon from "@/components/ui/icon";
 
 const CTASection = () => {
   return (
-    <section className="py-24 bg-secondary/30">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="relative bg-card border border-border rounded-3xl p-12 md:p-16 overflow-hidden">
-          {/* Decorative corner icons */}
-          <div className="absolute top-8 left-8 w-10 h-10 border border-border rounded-lg flex items-center justify-center">
-            <Mail className="w-4 h-4 text-muted-foreground" />
-          </div>
-          <div className="absolute top-8 right-8 w-10 h-10 border border-border rounded-lg flex items-center justify-center">
-            <Zap className="w-4 h-4 text-muted-foreground" />
-          </div>
-          <div className="absolute bottom-8 left-8 w-10 h-10 border border-border rounded-lg flex items-center justify-center">
-            <FileText className="w-4 h-4 text-muted-foreground" />
-          </div>
-          <div className="absolute bottom-8 right-8 w-10 h-10 border border-border rounded-lg flex items-center justify-center">
-            <Users className="w-4 h-4 text-muted-foreground" />
-          </div>
-          <div className="absolute top-1/2 right-16 -translate-y-1/2 w-10 h-10 border border-border rounded-lg hidden md:flex items-center justify-center">
-            <Send className="w-4 h-4 text-muted-foreground" />
-          </div>
-          <div className="absolute bottom-1/3 left-16 w-10 h-10 border border-border rounded-lg hidden md:flex items-center justify-center">
-            <span className="text-muted-foreground text-lg">+</span>
-          </div>
+    <section id="request" className="py-24 bg-secondary/30">
+      <div className="max-w-5xl mx-auto px-6">
+        <div className="relative bg-card border border-border rounded-3xl p-8 md:p-12 overflow-hidden">
+          <div className="grid md:grid-cols-2 gap-10 items-center">
+            {/* Left text */}
+            <div>
+              <span className="text-xs font-mono text-primary tracking-wider">ОСТАВИТЬ ЗАЯВКУ</span>
+              <h2 className="font-serif text-3xl md:text-4xl mt-4 mb-4 leading-tight">
+                Обсудим размещение ваших мощностей
+              </h2>
+              <p className="text-muted-foreground mb-6">
+                Оставьте контакты и кратко опишите задачу — специалисты «Позитрон» свяжутся с вами и подготовят условия под ваш проект.
+              </p>
+              <ul className="space-y-3">
+                {["Аренда и покупка модулей", "Партнёрство и инвестиции", "Индивидуальные условия"].map((item) => (
+                  <li key={item} className="flex items-center gap-3">
+                    <Icon name="Check" className="text-primary" size={16} />
+                    <span className="text-sm">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
 
-          {/* Main content */}
-          <div className="text-center max-w-2xl mx-auto relative z-10">
-            <h2 className="font-serif text-4xl md:text-5xl mb-4 leading-tight">
-              Ваши слова,
-              <br />
-              доставлены идеально.
-            </h2>
-            <p className="text-muted-foreground mb-8">
-              Присоединяйтесь к 2 847 профессионалам, использующим единственный ИИ, который понимает нюансы вашего голоса.
-            </p>
-            <button className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-full text-sm font-medium hover:bg-primary/90 transition-colors">
-              Попробовать бесплатно
-              <ArrowRight className="w-4 h-4" />
-            </button>
+            {/* Form */}
+            <form className="space-y-4">
+              <div>
+                <label className="text-xs font-mono text-muted-foreground">ИМЯ</label>
+                <input
+                  type="text"
+                  placeholder="Как к вам обращаться"
+                  className="w-full mt-1 bg-background border border-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
+                />
+              </div>
+              <div>
+                <label className="text-xs font-mono text-muted-foreground">EMAIL ИЛИ ТЕЛЕФОН</label>
+                <input
+                  type="text"
+                  placeholder="Контакт для связи"
+                  className="w-full mt-1 bg-background border border-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
+                />
+              </div>
+              <div>
+                <label className="text-xs font-mono text-muted-foreground">ОПИСАНИЕ ЗАДАЧИ</label>
+                <textarea
+                  rows={3}
+                  placeholder="Кратко опишите вашу задачу или требуемые мощности"
+                  className="w-full mt-1 bg-background border border-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40 resize-none"
+                />
+              </div>
+              <button
+                type="button"
+                className="w-full inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-full text-sm font-medium hover:bg-primary/90 transition-colors"
+              >
+                Отправить заявку
+                <Icon name="ArrowRight" size={16} />
+              </button>
+            </form>
           </div>
         </div>
       </div>

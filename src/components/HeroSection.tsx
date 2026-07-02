@@ -1,109 +1,72 @@
 import { ArrowRight } from "lucide-react";
 
+const stats = [
+  { value: "30 МВт", label: "СУММАРНАЯ МОЩНОСТЬ" },
+  { value: "3600", label: "СЕРВЕРНЫХ СТОЕК" },
+  { value: "4 Га", label: "ПЛОЩАДЬ КЛАСТЕРА" },
+  { value: "99,982%", label: "ДОСТУПНОСТЬ" },
+];
+
 const HeroSection = () => {
   return (
     <section className="relative overflow-hidden">
-      {/* Main hero area */}
-      <div className="max-w-7xl mx-auto px-6 pt-16 pb-24">
+      <div className="max-w-7xl mx-auto px-6 pt-16 pb-20">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left content */}
           <div className="space-y-6">
-            <div className="inline-flex items-center gap-2 text-xs font-mono text-muted-foreground border border-border rounded-full px-3 py-1">
-              <span>AI-АССИСТЕНТ ДЛЯ ПОЧТЫ V2.0</span>
+            <div className="inline-flex items-center gap-2 text-xs font-mono text-primary border border-primary/30 rounded-full px-3 py-1">
+              <span>МОДУЛЬНЫЙ ЦОД · ЛЕНИНГРАДСКАЯ ОБЛАСТЬ</span>
             </div>
 
-            <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl leading-[1.1] text-balance">
-              Письма, которые
-              <br />
-              пишут себя сами.
+            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl leading-[1.1] text-balance">
+              Готовая площадка для ваших серверов и AI-кластеров
             </h1>
 
             <p className="text-muted-foreground text-lg max-w-md">
-              Одна краткая мысль от вас. Идеальные, профессиональные ответы каждый раз.
+              Модульный ЦОД «Позитрон» — инженерная инфраструктура мощностью 30 МВт с собственной генерацией и жидкостным охлаждением. Размещайте вычислительные мощности любого масштаба без капитального строительства.
             </p>
 
-            <button className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-full text-sm font-medium hover:bg-primary/90 transition-colors">
-              Попробовать бесплатно
-              <ArrowRight className="w-4 h-4" />
-            </button>
+            <div className="flex flex-wrap gap-3">
+              <a
+                href="#request"
+                className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-full text-sm font-medium hover:bg-primary/90 transition-colors"
+              >
+                Оставить заявку
+                <ArrowRight className="w-4 h-4" />
+              </a>
+              <a
+                href="#model"
+                className="inline-flex items-center gap-2 border border-border px-6 py-3 rounded-full text-sm font-medium hover:bg-secondary transition-colors"
+              >
+                Модель ЦОД
+              </a>
+            </div>
+
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4">
+              {stats.map((s) => (
+                <div key={s.label}>
+                  <p className="font-serif text-2xl text-primary">{s.value}</p>
+                  <p className="text-[10px] font-mono text-muted-foreground mt-1">{s.label}</p>
+                </div>
+              ))}
+            </div>
           </div>
 
           {/* Right visual */}
           <div className="relative">
-            {/* Interface mockup container */}
-            <div className="relative bg-secondary/50 rounded-3xl p-8 border border-border/50">
-              {/* Top labels */}
-              <div className="flex justify-between text-[10px] font-mono text-muted-foreground mb-4">
-                <span>№01 — ИНТЕРФЕЙС_АССИСТЕНТА</span>
-                <span>БЕЗОПАСНОЕ_СОЕДИНЕНИЕ</span>
+            <div className="relative rounded-3xl overflow-hidden border border-border/50 shadow-xl">
+              <img
+                src="https://cdn.poehali.dev/projects/68d82088-8b02-49c3-a021-a205ff7b1889/files/cd977412-782d-4ffe-b26c-58665aa4e234.jpg"
+                alt="Модульный центр обработки данных Позитрон"
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-x-0 top-0 flex justify-between text-[10px] font-mono text-white/90 p-4 bg-gradient-to-b from-black/40 to-transparent">
+                <span>ПЛОЩАДКА · ЛЕНОБЛАСТЬ</span>
+                <span>СОБСТВЕННАЯ ГЕНЕРАЦИЯ ГПУ</span>
               </div>
-
-              {/* Sticky note */}
-              <div className="absolute -left-4 top-20 bg-[#fffef0] p-3 rounded shadow-sm rotate-[-3deg] border border-amber-100 w-36">
-                <p className="text-xs font-mono text-foreground/80">ЗАМЕТКА</p>
-                <p className="text-sm font-serif italic mt-1">«Бюджета нет до Q2.»</p>
-              </div>
-
-              {/* Typewriter keyboard */}
-              <div className="bg-[#4a5d52] rounded-2xl p-6 my-6 mx-auto max-w-sm">
-                <div className="flex justify-between text-[8px] text-white/70 font-mono mb-2 px-2">
-                  <span>АВТОМАТИЧЕСКИЙ ЧЕРНОВИК</span>
-                  <span>ДАТА_ОТПРАВКИ</span>
-                </div>
-                <div className="text-[10px] text-white/80 font-mono mb-4 px-2">
-                  <p>Кому: Совет директоров</p>
-                  <p>Тема: Финансовое планирование Q2</p>
-                </div>
-                <div className="bg-[#3a4a42] rounded-xl p-3">
-                  <div className="grid grid-cols-10 gap-1">
-                    {["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"].map((key) => (
-                      <div
-                        key={key}
-                        className="w-5 h-5 bg-[#2a3a32] rounded text-[8px] text-white/60 flex items-center justify-center font-mono"
-                      >
-                        {key}
-                      </div>
-                    ))}
-                  </div>
-                  <div className="grid grid-cols-10 gap-1 mt-1">
-                    {["Й", "Ц", "У", "К", "Е", "Н", "Г", "Ш", "Щ", "З"].map((key) => (
-                      <div
-                        key={key}
-                        className="w-5 h-5 bg-[#2a3a32] rounded text-[8px] text-white/60 flex items-center justify-center font-mono"
-                      >
-                        {key}
-                      </div>
-                    ))}
-                  </div>
-                  <div className="grid grid-cols-9 gap-1 mt-1 px-2">
-                    {["Ф", "Ы", "В", "А", "П", "Р", "О", "Л", "Д"].map((key) => (
-                      <div
-                        key={key}
-                        className="w-5 h-5 bg-[#2a3a32] rounded text-[8px] text-white/60 flex items-center justify-center font-mono"
-                      >
-                        {key}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              {/* Chat bubbles */}
-              <div className="absolute -right-2 top-32 space-y-2">
-                <div className="bg-card border border-border rounded-xl p-3 shadow-sm max-w-[180px]">
-                  <div className="flex items-center gap-2 mb-2">
-                    <div className="w-6 h-6 bg-secondary rounded-full" />
-                    <span className="text-xs font-medium">Иван Петров</span>
-                    <span className="text-[10px] text-muted-foreground">ДИРЕКТОР</span>
-                  </div>
-                  <p className="text-xs text-muted-foreground">Добрый день,</p>
-                </div>
-
-                <div className="bg-card border border-border rounded-xl p-3 shadow-sm max-w-[200px]">
-                  <p className="text-xs text-muted-foreground">
-                    Спасибо за информацию. Мы понимаем ограничения по бюджету и вернёмся к этому...
-                  </p>
-                </div>
+              <div className="absolute bottom-4 left-4 bg-accent text-accent-foreground px-4 py-2 rounded-xl shadow-lg">
+                <p className="text-xs font-mono">БАЗОВЫЙ МОДУЛЬ</p>
+                <p className="text-lg font-serif">2 МВт → 4 МВт</p>
               </div>
             </div>
           </div>
